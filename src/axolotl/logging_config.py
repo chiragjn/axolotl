@@ -65,7 +65,7 @@ DEFAULT_LOGGING_CONFIG: Dict[str, Any] = {
 }
 
 
-def configure_logging():
+def configure_logging(disable_existing_loggers: bool = False):
     """Configure with default logging"""
     init()  # Initialize colorama
-    dictConfig(DEFAULT_LOGGING_CONFIG)
+    dictConfig(DEFAULT_LOGGING_CONFIG, disable_existing_loggers=disable_existing_loggers)
