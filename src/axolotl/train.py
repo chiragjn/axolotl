@@ -269,6 +269,11 @@ def train(
         # defensively push to the hub to ensure the model card is updated
         trainer.push_to_hub()
 
+    if cfg.deepspeed:
+        trainer.deepspeed.destroy()
+    trainer.accelerator.free_memory()
+    trainer.model, trainer.model_wrapped, trainer.optimizer = None, None, None
+
     return model, tokenizer
 
 
